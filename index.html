@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Boundary Architecture in LLMs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .diagram-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .description {
+            margin-top: 30px;
+            line-height: 1.6;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Session Boundary Architecture in Large Language Models</h1>
+        
+        <div class="diagram-container">
+            <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+              <!-- Background -->
+              <rect width="800" height="600" fill="#f8f9fa"/>
+              
+              <!-- Title -->
+              <text x="400" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50">
+                Session Boundary Architecture in LLMs
+              </text>
+              
+              <!-- Session 1 -->
+              <g id="session1">
+                <!-- Session boundary box -->
+                <rect x="50" y="80" width="300" height="200" fill="#e3f2fd" stroke="#1976d2" stroke-width="3" rx="10"/>
+                <text x="200" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#1976d2">
+                  Session 1
+                </text>
+                
+                <!-- Context window -->
+                <rect x="70" y="120" width="260" height="80" fill="#bbdefb" stroke="#1976d2" stroke-width="1" rx="5"/>
+                <text x="200" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#0d47a1">
+                  Context Window
+                </text>
+                
+                <!-- Conversation turns -->
+                <circle cx="100" cy="165" r="8" fill="#2196f3"/>
+                <text x="100" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1976d2">Turn 1</text>
+                
+                <circle cx="150" cy="165" r="8" fill="#2196f3"/>
+                <text x="150" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1976d2">Turn 2</text>
+                
+                <circle cx="200" cy="165" r="8" fill="#2196f3"/>
+                <text x="200" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1976d2">Turn 3</text>
+                
+                <circle cx="250" cy="165" r="8" fill="#2196f3"/>
+                <text x="250" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#1976d2">Turn 4</text>
+                
+                <!-- Memory state -->
+                <rect x="70" y="220" width="260" height="40" fill="#90caf9" stroke="#1976d2" stroke-width="1" rx="5"/>
+                <text x="200" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#0d47a1">
+                  Session Memory & State
+                </text>
+              </g>
+              
+              <!-- Session 2 -->
+              <g id="session2">
+                <!-- Session boundary box -->
+                <rect x="450" y="80" width="300" height="200" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="3" rx="10"/>
+                <text x="600" y="100" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#7b1fa2">
+                  Session 2
+                </text>
+                
+                <!-- Context window -->
+                <rect x="470" y="120" width="260" height="80" fill="#e1bee7" stroke="#7b1fa2" stroke-width="1" rx="5"/>
+                <text x="600" y="140" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a148c">
+                  Context Window
+                </text>
+                
+                <!-- Conversation turns -->
+                <circle cx="500" cy="165" r="8" fill="#9c27b0"/>
+                <text x="500" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7b1fa2">Turn 1</text>
+                
+                <circle cx="550" cy="165" r="8" fill="#9c27b0"/>
+                <text x="550" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7b1fa2">Turn 2</text>
+                
+                <circle cx="600" cy="165" r="8" fill="#9c27b0"/>
+                <text x="600" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7b1fa2">Turn 3</text>
+                
+                <circle cx="650" cy="165" r="8" fill="#9c27b0"/>
+                <text x="650" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7b1fa2">Turn 4</text>
+                
+                <!-- Memory state -->
+                <rect x="470" y="220" width="260" height="40" fill="#ce93d8" stroke="#7b1fa2" stroke-width="1" rx="5"/>
+                <text x="600" y="245" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a148c">
+                  Session Memory & State
+                </text>
+              </g>
+              
+              <!-- Boundary barrier -->
+              <g id="boundary">
+                <rect x="380" y="70" width="10" height="220" fill="#f44336" opacity="0.8"/>
+                <text x="385" y="50" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#f44336">
+                  Session Boundary
+                </text>
+                
+                <!-- Barrier indicators -->
+                <polygon points="375,100 395,100 385,85" fill="#f44336"/>
+                <polygon points="375,130 395,130 385,115" fill="#f44336"/>
+                <polygon points="375,160 395,160 385,145" fill="#f44336"/>
+                <polygon points="375,190 395,190 385,175" fill="#f44336"/>
+                <polygon points="375,220 395,220 385,205" fill="#f44336"/>
+                <polygon points="375,250 395,250 385,235" fill="#f44336"/>
+              </g>
+              
+              <!-- Memory isolation indicator -->
+              <g id="isolation">
+                <path d="M 200 300 Q 400 320 600 300" stroke="#f44336" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+                <text x="400" y="340" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#f44336">
+                  Memory Isolation - No Cross-Session Access
+                </text>
+              </g>
+              
+              <!-- LLM Core -->
+              <g id="llm_core">
+                <rect x="300" y="400" width="200" height="80" fill="#fff3e0" stroke="#f57c00" stroke-width="2" rx="10"/>
+                <text x="400" y="425" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#f57c00">
+                  LLM Core
+                </text>
+                <text x="400" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e65100">
+                  Processing Engine
+                </text>
+                <text x="400" y="465" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e65100">
+                  Model Parameters
+                </text>
+              </g>
+              
+              <!-- Connection lines -->
+              <line x1="200" y1="280" x2="350" y2="400" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+              <line x1="600" y1="280" x2="450" y2="400" stroke="#666" stroke-width="1" stroke-dasharray="3,3"/>
+              
+              <!-- Legend -->
+              <g id="legend">
+                <rect x="50" y="520" width="700" height="60" fill="#ffffff" stroke="#ddd" stroke-width="1" rx="5"/>
+                <text x="60" y="540" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">
+                  Key Concepts:
+                </text>
+                <text x="60" y="555" font-family="Arial, sans-serif" font-size="10" fill="#555">
+                  • Each session maintains isolated context and memory
+                </text>
+                <text x="60" y="570" font-family="Arial, sans-serif" font-size="10" fill="#555">
+                  • Session boundary prevents cross-contamination and ensures privacy
+                </text>
+                <text x="400" y="555" font-family="Arial, sans-serif" font-size="10" fill="#555">
+                  • Context window limits conversation length within session
+                </text>
+                <text x="400" y="570" font-family="Arial, sans-serif" font-size="10" fill="#555">
+                  • LLM core processes requests while respecting boundary constraints
+                </text>
+              </g>
+            </svg>
+        </div>
+        
+        <div class="description">
+            <h2>About Session Boundaries</h2>
+            <p>A <strong>session boundary</strong> in large language models defines the temporal and contextual limits of a single conversational interaction. It represents the discrete window during which an LLM maintains conversational state, context awareness, and memory of previous exchanges within that specific interaction.</p>
+            
+            <p>Session boundaries are architecturally critical because they enable scalable memory management, ensure privacy and security through isolation, and maintain conversational coherence within interactions while preventing confusion from unrelated previous conversations.</p>
+        </div>
+    </div>
+</body>
+</html>
